@@ -1,0 +1,29 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-cinzel: 'Cinzel', serif;
+  --font-inter: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+html {
+  font-family: var(--font-inter);
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #0d0e1a;
+  color: #f0ede6;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.font-mono,
+.font-mono * {
+  font-family: var(--font-mono);
+}
