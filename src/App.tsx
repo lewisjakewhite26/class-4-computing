@@ -10,6 +10,7 @@ import { TabStrip, type MainTab } from './components/TabStrip'
 import { TeamBuilderPanel } from './components/TeamBuilderPanel'
 import { TeamSidebar } from './components/TeamSidebar'
 import { TeamProvider, useTeam } from './context/TeamContext'
+import { customCreatureToCharacter } from './lib/customCreatureToCharacter'
 import BattlePage from './pages/BattlePage'
 
 function Shell() {
@@ -18,10 +19,13 @@ function Shell() {
   const [pickerOpen, setPickerOpen] = useState(false)
   const [pickerSession, setPickerSession] = useState(0)
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(null)
-  const { roster, remaining, placeCharacterInSlot } = useTeam()
+  const { roster, remaining, placeCharacterInSlot, custom, customSaved } = useTeam()
   const navigate = useNavigate()
-  const playerTeamForBattle = roster.filter((x): x is Character => x != null)
-  const canEnterBattle = playerTeamForBattle.length >= 1
+  const rosterChars = roster.filter((x): x is Character => x != null)
+  const customOnTeam =
+    customSaved && custom.name.trim().length > 0 ? customCreatureToCharacter(custom) : null
+  const playerTeamForBattle = customOnTeam ? [...rosterChars, customOnTeam] : rosterChars
+  const canEnterBattle = rosterChars.length >= 1 || customOnTeam != null
 
   const openPicker = useCallback((idx: number) => {
     setActiveSlotIndex(idx)
