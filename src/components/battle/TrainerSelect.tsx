@@ -48,7 +48,7 @@ export function TrainerSelect({
   flashColor: string | null
 }) {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-[#0d0e1a] px-4 pb-16 pt-6 text-[#f0ede6]">
+    <div className="relative min-h-[100dvh] min-h-screen overflow-x-hidden bg-[#0d0e1a] pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] pb-[calc(4rem+var(--mm-safe-bottom))] pt-6 text-[#f0ede6]">
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden
@@ -135,7 +135,7 @@ export function TrainerSelect({
                 <button
                   type="button"
                   disabled={!unlocked}
-                  className="mt-4 w-full rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#1a1d35] py-2.5 font-[family-name:var(--font-cinzel)] text-[13px] text-[#c9922a] transition-colors hover:bg-[#232742] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
+                  className="mt-4 w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#1a1d35] py-2.5 font-[family-name:var(--font-cinzel)] text-[13px] text-[#c9922a] transition-colors hover:bg-[#232742] active:bg-[#2a2e48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
                   onClick={() => unlocked && onChallenge(t)}
                 >
                   Challenge

@@ -35,7 +35,7 @@ export function TeamSidebar({
   return (
     <aside
       className={[
-        'flex w-full min-[1200px]:w-[320px] min-[1200px]:shrink-0 flex-col border-[rgba(201,146,42,0.15)] bg-[rgba(26,29,53,0.7)] backdrop-blur-[12px] min-[1200px]:sticky min-[1200px]:top-[88px] min-[1200px]:h-[calc(100vh-88px)] min-[1200px]:rounded-2xl min-[1200px]:border',
+        'flex w-full flex-col border-[rgba(201,146,42,0.15)] bg-[rgba(26,29,53,0.7)] backdrop-blur-[12px] lg:sticky lg:top-[var(--mm-header-offset)] lg:h-[calc(100dvh-var(--mm-header-offset))] lg:w-[320px] lg:shrink-0 lg:rounded-2xl lg:border',
         className ?? '',
       ].join(' ')}
       aria-label="Your team sidebar"
@@ -84,7 +84,7 @@ export function TeamSidebar({
                   </div>
                   <button
                     type="button"
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[rgba(201,146,42,0.2)] text-lg leading-none text-[#8a8fa8] transition-colors hover:border-red-500/40 hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+                    className="flex min-h-[44px] min-w-[44px] shrink-0 touch-manipulation items-center justify-center rounded-lg border border-[rgba(201,146,42,0.2)] text-lg leading-none text-[#8a8fa8] transition-colors hover:border-red-500/40 hover:text-red-300 active:border-red-500/50 active:text-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
                     aria-label={`Remove ${c.name} from team`}
                     onClick={() => removeFromSlot(i)}
                   >
@@ -146,7 +146,7 @@ export function TeamSidebar({
                 </div>
                 <button
                   type="button"
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-[rgba(201,146,42,0.2)] text-lg leading-none text-[#8a8fa8] transition-colors hover:border-red-500/40 hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+                  className="flex min-h-[44px] min-w-[44px] shrink-0 touch-manipulation items-center justify-center rounded-lg border border-[rgba(201,146,42,0.2)] text-lg leading-none text-[#8a8fa8] transition-colors hover:border-red-500/40 hover:text-red-300 active:border-red-500/50 active:text-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
                   aria-label={`Remove ${custom.name.trim()} from team`}
                   onClick={removeCustomFromTeam}
                 >
@@ -204,7 +204,7 @@ export function TeamSidebar({
         </div>
         <button
           type="button"
-          className="w-full min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#1a1d35] py-2.5 text-[13px] font-medium text-[#f0ede6] transition-colors hover:bg-[#232742] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+          className="w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#1a1d35] py-2.5 text-[13px] font-medium text-[#f0ede6] transition-colors hover:bg-[#232742] active:bg-[#2a2e48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
           onClick={randomiseTeam}
         >
           Randomise Team
@@ -213,7 +213,7 @@ export function TeamSidebar({
           <button
             type="button"
             disabled={!canEnterBattle}
-            className="w-full min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.45)] bg-gradient-to-r from-[#2a2210] to-[#1a1d35] py-2.5 font-[family-name:var(--font-cinzel)] text-[14px] font-semibold tracking-wide text-[#c9922a] transition-opacity hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-35"
+            className="w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.45)] bg-gradient-to-r from-[#2a2210] to-[#1a1d35] py-2.5 font-[family-name:var(--font-cinzel)] text-[14px] font-semibold tracking-wide text-[#c9922a] transition-opacity hover:opacity-95 active:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-35"
             onClick={onEnterBattle}
           >
             Enter Battle

@@ -10,7 +10,7 @@ import { TabStrip, type MainTab } from './components/TabStrip'
 import { TeamBuilderPanel } from './components/TeamBuilderPanel'
 import { TeamSidebar } from './components/TeamSidebar'
 import { TeamProvider, useTeam } from './context/TeamContext'
-import { customCreatureToCharacter } from './lib/customCreatureToCharacter'
+import { canEnterBattleFromRoster } from './lib/buildPlayerBattleRoster'
 import BattlePage from './pages/BattlePage'
 
 function Shell() {
@@ -21,11 +21,7 @@ function Shell() {
   const [activeSlotIndex, setActiveSlotIndex] = useState<number | null>(null)
   const { roster, remaining, placeCharacterInSlot, custom, customSaved } = useTeam()
   const navigate = useNavigate()
-  const rosterChars = roster.filter((x): x is Character => x != null)
-  const customOnTeam =
-    customSaved && custom.name.trim().length > 0 ? customCreatureToCharacter(custom) : null
-  const playerTeamForBattle = customOnTeam ? [...rosterChars, customOnTeam] : rosterChars
-  const canEnterBattle = rosterChars.length >= 1 || customOnTeam != null
+  const canEnterBattle = canEnterBattleFromRoster(roster, custom, customSaved)
 
   const openPicker = useCallback((idx: number) => {
     setActiveSlotIndex(idx)
@@ -76,14 +72,14 @@ function Shell() {
 
       <AppHeader onOpenTeam={openTeam} />
 
-      <div className="mx-auto flex max-w-[1800px] min-h-0 pt-[88px] min-[1200px]:gap-6 min-[1200px]:px-6 min-[1200px]:pb-10">
+      <div className="mx-auto flex max-w-[1800px] min-h-0 pt-[var(--mm-header-offset)] lg:gap-6 lg:px-6 lg:pb-10">
         <TeamSidebar
-          className="hidden min-[1200px]:flex"
-          onEnterBattle={() => navigate('/battle', { state: { playerTeam: playerTeamForBattle } })}
+          className="hidden lg:flex"
+          onEnterBattle={() => navigate('/battle')}
           canEnterBattle={canEnterBattle}
         />
 
-        <main className="relative min-h-[calc(100vh-88px)] min-w-0 flex-1 px-4 pb-24 min-[1200px]:px-0 min-[1200px]:pb-10">
+        <main className="relative min-h-[calc(100dvh-var(--mm-header-offset))] min-w-0 flex-1 pb-[calc(6rem+var(--mm-safe-bottom))] pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] lg:px-0 lg:pb-10">
           <TabStrip active={tab} onChange={setTab} />
           <AnimatePresence mode="wait">
             {tab === 'builder' && <TeamBuilderPanel key="builder" onOpenPicker={openPicker} />}
@@ -99,7 +95,7 @@ function Shell() {
             <motion.button
               type="button"
               aria-label="Close team panel"
-              className="fixed inset-0 z-[60] bg-black/55 backdrop-blur-[2px] min-[1200px]:hidden"
+              className="fixed inset-0 z-[60] bg-black/55 backdrop-blur-[2px] lg:hidden"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -109,13 +105,13 @@ function Shell() {
               role="dialog"
               aria-modal="true"
               aria-label="Your team"
-              className="fixed z-[70] flex max-h-[92vh] min-h-0 w-full flex-col overflow-hidden border-[rgba(201,146,42,0.2)] bg-[#0d0e1a] shadow-[0_-8px_40px_rgba(0,0,0,0.45)] min-[768px]:max-[1199px]:bottom-0 min-[768px]:max-[1199px]:left-2 min-[768px]:max-[1199px]:right-2 min-[768px]:max-[1199px]:max-h-[55vh] min-[768px]:max-[1199px]:rounded-t-2xl min-[768px]:max-[1199px]:border min-[768px]:max-[1199px]:border-b-0 max-[767px]:inset-0 max-[767px]:border-0"
+              className="fixed z-[70] flex max-h-[92dvh] min-h-0 w-full flex-col overflow-hidden border-[rgba(201,146,42,0.2)] bg-[#0d0e1a] shadow-[0_-8px_40px_rgba(0,0,0,0.45)] max-md:inset-0 max-md:border-0 md:max-lg:bottom-[var(--mm-safe-bottom)] md:max-lg:left-2 md:max-lg:right-2 md:max-lg:max-h-[55dvh] md:max-lg:rounded-t-2xl md:max-lg:border md:max-lg:border-b-0"
               initial={{ y: '100%' }}
               animate={{ y: 0 }}
               exit={{ y: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 32 }}
             >
-              <div className="flex items-center justify-between border-b border-[rgba(201,146,42,0.12)] px-4 py-2 min-[1200px]:hidden">
+              <div className="flex items-center justify-between border-b border-[rgba(201,146,42,0.12)] px-4 py-2 lg:hidden">
                 <span className="font-[family-name:var(--font-cinzel)] text-[15px] text-[#f0ede6]">Your Team</span>
                 <button
                   type="button"
@@ -128,8 +124,8 @@ function Shell() {
               </div>
               <div className="min-h-0 flex-1 overflow-y-auto">
                 <TeamSidebar
-                  className="min-[1200px]:hidden !rounded-none !border-0 min-[768px]:max-[1199px]:max-h-[50vh]"
-                  onEnterBattle={() => navigate('/battle', { state: { playerTeam: playerTeamForBattle } })}
+                  className="!rounded-none !border-0 md:max-lg:max-h-[50dvh] lg:hidden"
+                  onEnterBattle={() => navigate('/battle')}
                   canEnterBattle={canEnterBattle}
                 />
               </div>
@@ -153,16 +149,11 @@ function Shell() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <TeamProvider>
-            <Shell />
-          </TeamProvider>
-        }
-      />
-      <Route path="/battle" element={<BattlePage />} />
-    </Routes>
+    <TeamProvider>
+      <Routes>
+        <Route path="/" element={<Shell />} />
+        <Route path="/battle" element={<BattlePage />} />
+      </Routes>
+    </TeamProvider>
   )
 }

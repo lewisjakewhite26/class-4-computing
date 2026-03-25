@@ -5,8 +5,8 @@ export function AppHeader({ onOpenTeam }: { onOpenTeam?: () => void }) {
   const { remaining, budget } = useTeam()
 
   return (
-    <header className="fixed left-0 right-0 top-0 z-50 border-b border-[rgba(201,146,42,0.15)] bg-[#0d0e1a]/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 px-4 py-3 min-[1200px]:px-6">
+    <header className="fixed left-0 right-0 top-0 z-50 border-b border-[rgba(201,146,42,0.15)] bg-[#0d0e1a]/90 pt-[var(--mm-safe-top)] backdrop-blur-md">
+      <div className="mx-auto flex max-w-[1800px] items-center justify-between gap-4 py-3 pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] lg:pl-6 lg:pr-6">
         <div className="min-w-0 flex-1">
           <h1 className="font-[family-name:var(--font-cinzel)] text-[clamp(1.05rem,2.5vw,1.65rem)] font-semibold tracking-wide text-[#f0ede6]">
             Mythmon Team Builder
@@ -18,7 +18,7 @@ export function AppHeader({ onOpenTeam }: { onOpenTeam?: () => void }) {
         <div className="flex shrink-0 items-center gap-3">
           <button
             type="button"
-            className="min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#13152a] px-3 py-2 text-[13px] font-medium text-[#f0ede6] transition-colors hover:bg-[#1a1d35] min-[1200px]:hidden"
+            className="min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] bg-[#13152a] px-3 py-2 text-[13px] font-medium text-[#f0ede6] transition-colors active:bg-[#1a1d35] hover:bg-[#1a1d35] lg:hidden"
             onClick={onOpenTeam}
           >
             My Team

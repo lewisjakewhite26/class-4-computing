@@ -1,9 +1,11 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useCallback, useEffect, useMemo, useReducer, useRef } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import type { Character } from '../../data/characters'
 import { CHARACTERS } from '../../data/characters'
 import { BattleArena } from '../components/battle/BattleArena'
 import { BattleOver, type EduCard } from '../components/battle/BattleOver'
+import { useTeam } from '../context/TeamContext'
+import { buildPlayerBattleRoster } from '../lib/buildPlayerBattleRoster'
 import { buildPerfRows } from '../lib/battlePerfRows'
 import { TrainerSelect } from '../components/battle/TrainerSelect'
 import { TRAINERS, type Trainer } from '../data/trainers'
@@ -118,10 +120,12 @@ function getActive(s: FullState) {
 }
 
 export default function BattlePage() {
-  const location = useLocation()
   const navigate = useNavigate()
-  const navState = location.state as { playerTeam?: Character[] } | null
-  const playerSource = (navState?.playerTeam ?? []).filter(Boolean) as Character[]
+  const { roster, custom, customSaved } = useTeam()
+  const playerSource = useMemo(
+    () => buildPlayerBattleRoster(roster, custom, customSaved),
+    [roster, custom, customSaved],
+  )
 
   const initial: FullState = {
     phase: 'trainer-select',
@@ -820,7 +824,7 @@ export default function BattlePage() {
 
   if (playerSource.length === 0) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-[#0d0e1a] px-4 text-[#f0ede6]">
+      <div className="flex min-h-[100dvh] min-h-screen flex-col items-center justify-center gap-4 bg-[#0d0e1a] pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] pb-[calc(2rem+var(--mm-safe-bottom))] pt-8 text-center text-[#f0ede6]">
         <p className="font-[family-name:var(--font-inter)] text-lg">No team selected</p>
         <Link
           to="/"

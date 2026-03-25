@@ -53,7 +53,7 @@ export function MoveButtons({
         <button
           type="button"
           disabled={disabled || waiting}
-          className="mt-4 w-full rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] text-[#f0ede6] transition-colors hover:bg-[#232742] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
+          className="mt-4 w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] text-[#f0ede6] transition-colors hover:bg-[#232742] active:bg-[#2a2e48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
           onClick={onOpenSwitch}
         >
           Switch
@@ -61,7 +61,7 @@ export function MoveButtons({
         <button
           type="button"
           disabled={disabled || waiting}
-          className="mt-2 w-full rounded-xl border border-white/10 py-2 text-[12px] text-[#8a8fa8] hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
+          className="mt-2 w-full min-h-[44px] touch-manipulation rounded-xl border border-white/10 py-2 text-[12px] text-[#8a8fa8] hover:bg-white/5 active:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
           onClick={onSkipTurn}
         >
           End turn
@@ -98,10 +98,10 @@ export function MoveButtons({
                 if (e.key === 'Enter' && !unusable && real) onMove(m)
               }}
               className={[
-                'relative min-h-[118px] rounded-xl border px-2 pb-6 pt-2 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                'relative min-h-[118px] touch-manipulation rounded-xl border px-2 pb-6 pt-2 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
                 unusable
                   ? 'cursor-not-allowed border-white/10 bg-black/25 opacity-50'
-                  : 'border-[rgba(201,146,42,0.2)] bg-[#13152a]',
+                  : 'border-[rgba(201,146,42,0.2)] bg-[#13152a] active:opacity-90',
               ].join(' ')}
               onMouseEnter={(e) => {
                 if (!unusable) e.currentTarget.style.borderColor = tc.glow
@@ -147,7 +147,7 @@ export function MoveButtons({
       <button
         type="button"
         disabled={blockInput}
-        className="mt-3 w-full rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] font-[family-name:var(--font-cinzel)] text-[#c9922a] transition-colors hover:bg-[#232742] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
+        className="mt-3 w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] font-[family-name:var(--font-cinzel)] text-[#c9922a] transition-colors hover:bg-[#232742] active:bg-[#2a2e48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:cursor-not-allowed disabled:opacity-40"
         onClick={onOpenSwitch}
       >
         Switch

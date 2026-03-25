@@ -171,12 +171,13 @@ export function CharacterPickerModal({
             role="dialog"
             aria-modal="true"
             aria-labelledby="picker-title"
-            className="relative z-[86] flex max-h-[90vh] w-full flex-col overflow-hidden rounded-b-2xl border border-[rgba(201,146,42,0.2)] shadow-[0_16px_48px_rgba(0,0,0,0.55)]"
+            className="relative z-[86] flex max-h-[90dvh] max-h-[90vh] w-full flex-col overflow-hidden rounded-b-2xl border border-[rgba(201,146,42,0.2)] shadow-[0_16px_48px_rgba(0,0,0,0.55)]"
             style={{
               background: 'rgba(10, 11, 22, 0.97)',
               backdropFilter: 'blur(8px)',
               WebkitBackdropFilter: 'blur(8px)',
               paddingTop: 'max(0.75rem, env(safe-area-inset-top, 0px))',
+              paddingBottom: 'max(0.5rem, env(safe-area-inset-bottom, 0px))',
             }}
             initial={{ y: '-100%' }}
             animate={{ y: 0 }}
@@ -198,7 +199,7 @@ export function CharacterPickerModal({
                 </div>
                 <button
                   type="button"
-                  className="min-h-[44px] min-w-[44px] shrink-0 rounded-lg text-2xl leading-none text-[#8a8fa8] transition-colors hover:text-[#f0ede6]"
+                  className="min-h-[44px] min-w-[44px] shrink-0 touch-manipulation rounded-lg text-2xl leading-none text-[#8a8fa8] transition-colors hover:text-[#f0ede6] active:text-[#f0ede6]"
                   onClick={onClose}
                   aria-label="Close"
                 >
@@ -218,7 +219,7 @@ export function CharacterPickerModal({
                     key={f.id}
                     type="button"
                     className={[
-                      'shrink-0 min-h-[40px] rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                      'shrink-0 min-h-[44px] touch-manipulation rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
                       roleFilter === f.id
                         ? 'border-[#c9922a] bg-[#1a1d35] text-[#f0ede6]'
                         : 'border-[rgba(201,146,42,0.2)] bg-[#13152a] text-[#8a8fa8] hover:text-[#f0ede6]',
@@ -237,7 +238,7 @@ export function CharacterPickerModal({
                 <button
                   type="button"
                   className={[
-                    'shrink-0 min-h-[40px] rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                    'shrink-0 min-h-[44px] touch-manipulation rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
                     typeFilter === 'all'
                       ? 'border-[#c9922a] bg-[#1a1d35] text-[#f0ede6]'
                       : 'border-[rgba(201,146,42,0.2)] bg-[#13152a] text-[#8a8fa8] hover:text-[#f0ede6]',
@@ -254,7 +255,7 @@ export function CharacterPickerModal({
                       key={t}
                       type="button"
                       className={[
-                        'shrink-0 min-h-[40px] rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                        'shrink-0 min-h-[44px] touch-manipulation rounded-full border px-3 py-1.5 text-[13px] transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
                         on
                           ? 'border-[#c9922a] text-[#f0ede6]'
                           : 'border-[rgba(201,146,42,0.2)] text-[#8a8fa8] hover:text-[#f0ede6]',
@@ -274,7 +275,7 @@ export function CharacterPickerModal({
               <label className="flex items-center gap-2 pb-1 text-[13px] text-[#8a8fa8]">
                 <span className="shrink-0">Sort</span>
                 <select
-                  className="min-h-[40px] min-w-[11rem] rounded-xl border border-[rgba(201,146,42,0.2)] bg-[#13152a] px-3 py-2 text-[13px] text-[#f0ede6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+                  className="min-h-[44px] min-w-[11rem] rounded-xl border border-[rgba(201,146,42,0.2)] bg-[#13152a] px-3 py-2 text-base text-[#f0ede6] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
                   value={sort}
                   onChange={(e) => setSort(e.target.value as SortKey)}
                   aria-label="Sort characters"

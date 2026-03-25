@@ -79,7 +79,7 @@ export function BattleArena({
   const asleep = playerActive.status === 'asleep'
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#0d0e1a] text-[#f0ede6]">
+    <div className="flex min-h-[100dvh] min-h-screen flex-col bg-[#0d0e1a] text-[#f0ede6]">
       <div
         className="pointer-events-none fixed inset-0 -z-10"
         aria-hidden
@@ -89,7 +89,7 @@ export function BattleArena({
       />
 
       {/* AI half */}
-      <section className="flex min-h-[38vh] flex-col justify-end px-4 pb-4 pt-8 min-[1200px]:px-8">
+      <section className="flex min-h-[38vh] flex-col justify-end pb-4 pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] pt-8 lg:px-8">
         <div className="mx-auto flex w-full max-w-[900px] flex-col items-end gap-3">
           <div className="flex flex-wrap items-center justify-end gap-2">
             <span
@@ -130,7 +130,7 @@ export function BattleArena({
       <div className="h-px shrink-0 bg-[rgba(201,146,42,0.12)]" />
 
       {/* Player half */}
-      <section className="flex min-h-[32vh] flex-col justify-start px-4 pt-4 min-[1200px]:px-8">
+      <section className="flex min-h-[32vh] flex-col justify-start pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] pt-4 lg:px-8">
         <div className="mx-auto flex w-full max-w-[900px] flex-col items-start gap-3">
           <CharacterAvatar
             name={playerActive.name}
@@ -160,9 +160,9 @@ export function BattleArena({
       </section>
 
       {/* Action panel */}
-      <div className="mt-auto border-t border-[rgba(201,146,42,0.12)] bg-[rgba(13,14,26,0.6)] px-4 py-4 min-[1200px]:px-8">
+      <div className="mt-auto border-t border-[rgba(201,146,42,0.12)] bg-[rgba(13,14,26,0.6)] py-4 pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] pb-[calc(1rem+var(--mm-safe-bottom))] lg:px-8 lg:pb-[max(1rem,var(--mm-safe-bottom))]">
         <p className="mb-2 text-center text-[11px] text-[#8a8fa8]">Turn {turn}</p>
-        <div className="mx-auto grid max-w-[1000px] gap-4 min-[900px]:grid-cols-2">
+        <div className="mx-auto grid max-w-[1000px] gap-4 lg:grid-cols-2">
           <BattleLog entries={log} />
           <div>
             {switchOpen ? (

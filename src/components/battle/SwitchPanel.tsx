@@ -42,9 +42,9 @@ export function SwitchPanel({
                 disabled={!selectable}
                 onClick={() => selectable && onPick(i)}
                 className={[
-                  'flex w-full items-center gap-3 rounded-xl border px-2 py-2 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                  'flex min-h-[52px] w-full touch-manipulation items-center gap-3 rounded-xl border px-2 py-2 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
                   selectable
-                    ? 'border-[rgba(201,146,42,0.2)] bg-[#13152a] hover:border-[#c9922a]/50'
+                    ? 'border-[rgba(201,146,42,0.2)] bg-[#13152a] hover:border-[#c9922a]/50 active:border-[#c9922a]/65'
                     : 'cursor-not-allowed border-white/5 bg-black/20 opacity-50',
                 ].join(' ')}
               >
@@ -75,7 +75,7 @@ export function SwitchPanel({
       {!forced ? (
         <button
           type="button"
-          className="mt-3 w-full rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] text-[#f0ede6] transition-colors hover:bg-[#232742] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+          className="mt-3 w-full min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.35)] py-2.5 text-[13px] text-[#f0ede6] transition-colors hover:bg-[#232742] active:bg-[#2a2e48] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
           onClick={onBack}
         >
           Back

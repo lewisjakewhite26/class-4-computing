@@ -17,7 +17,7 @@ export function TabStrip({
 }) {
   return (
     <nav
-      className="sticky top-[88px] z-40 -mx-4 border-b border-[rgba(201,146,42,0.12)] bg-[#0d0e1a]/95 px-4 py-2 backdrop-blur-md min-[1200px]:top-[88px] min-[1200px]:mx-0 min-[1200px]:rounded-none"
+      className="sticky top-[var(--mm-header-offset)] z-40 -mx-4 border-b border-[rgba(201,146,42,0.12)] bg-[#0d0e1a]/95 py-2 pl-[max(1rem,var(--mm-safe-left))] pr-[max(1rem,var(--mm-safe-right))] backdrop-blur-md lg:mx-0 lg:rounded-none lg:px-6"
       aria-label="Main sections"
     >
       <div className="flex flex-wrap gap-1">
@@ -30,8 +30,10 @@ export function TabStrip({
               role="tab"
               aria-selected={isOn}
               className={[
-                'relative min-h-[44px] rounded-xl px-4 py-2 text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
-                isOn ? 'text-[#f0ede6]' : 'text-[#8a8fa8] hover:text-[#f0ede6]',
+                'relative min-h-[44px] touch-manipulation rounded-xl px-4 py-2 text-[13px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]',
+                isOn
+                  ? 'text-[#f0ede6]'
+                  : 'text-[#8a8fa8] hover:text-[#f0ede6] active:bg-white/5 active:text-[#f0ede6]',
               ].join(' ')}
               onClick={() => onChange(t.id)}
             >

@@ -94,7 +94,7 @@ export function TeamBuilderPanel({
         <div className="flex shrink-0 justify-end">
           <button
             type="button"
-            className="flex min-h-[32px] min-w-[32px] items-center justify-center rounded-lg text-lg leading-none text-[#8a8fa8] hover:text-[#f0ede6]"
+            className="flex min-h-[44px] min-w-[44px] touch-manipulation items-center justify-center rounded-lg text-lg leading-none text-[#8a8fa8] hover:text-[#f0ede6] active:text-[#f0ede6]"
             onClick={() => removeFromSlot(index)}
             aria-label={`Remove ${c.name}`}
           >
@@ -179,7 +179,7 @@ export function TeamBuilderPanel({
               disabled={!unlocked}
               maxLength={40}
               placeholder="Name your creature"
-              className="mt-1 w-full min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.2)] bg-[#13152a] px-3 py-2 text-[13px] text-[#f0ede6] placeholder:text-[#5c6078] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:opacity-60"
+              className="mt-1 w-full min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.2)] bg-[#13152a] px-3 py-2 text-base text-[#f0ede6] placeholder:text-[#5c6078] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a] disabled:opacity-60"
             />
           </label>
           <div className="mt-4 space-y-4">
@@ -197,21 +197,23 @@ export function TeamBuilderPanel({
                       {v}
                     </span>
                   </div>
-                  <input
-                    id={`tb-stat-${r.key}`}
-                    type="range"
-                    min={10}
-                    max={255}
-                    step={1}
-                    value={thumb}
-                    disabled={!unlocked}
-                    aria-valuemin={10}
-                    aria-valuemax={255}
-                    aria-valuenow={v}
-                    aria-label={`${r.label}: value ${v} on a 10 to 255 scale; can spend up to ${maxAffordable} on this stat with current budget`}
-                    className="h-2 w-full cursor-pointer accent-[#c9922a] disabled:cursor-not-allowed"
-                    onChange={(e) => onStatInput(r.key, Number(e.target.value))}
-                  />
+                  <div className="flex min-h-[44px] items-center py-1">
+                    <input
+                      id={`tb-stat-${r.key}`}
+                      type="range"
+                      min={10}
+                      max={255}
+                      step={1}
+                      value={thumb}
+                      disabled={!unlocked}
+                      aria-valuemin={10}
+                      aria-valuemax={255}
+                      aria-valuenow={v}
+                      aria-label={`${r.label}: value ${v} on a 10 to 255 scale; can spend up to ${maxAffordable} on this stat with current budget`}
+                      className="h-3 w-full cursor-pointer touch-manipulation accent-[#c9922a] disabled:cursor-not-allowed"
+                      onChange={(e) => onStatInput(r.key, Number(e.target.value))}
+                    />
+                  </div>
                 </div>
               )
             })}
@@ -219,7 +221,7 @@ export function TeamBuilderPanel({
           <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-[rgba(201,146,42,0.12)] pt-4">
             <button
               type="button"
-              className="min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.45)] bg-[#c9922a] px-5 py-2.5 text-[13px] font-semibold text-[#0d0e1a] transition-opacity hover:opacity-95 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0b84a]"
+              className="min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.45)] bg-[#c9922a] px-5 py-2.5 text-[13px] font-semibold text-[#0d0e1a] transition-opacity hover:opacity-95 active:opacity-100 disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#f0b84a]"
               disabled={!canSave}
               onClick={saveCustomToTeam}
             >
@@ -228,7 +230,7 @@ export function TeamBuilderPanel({
             {customSaved && (
               <button
                 type="button"
-                className="min-h-[44px] rounded-xl border border-[rgba(201,146,42,0.25)] bg-transparent px-4 py-2.5 text-[13px] font-medium text-[#8a8fa8] transition-colors hover:border-red-500/35 hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
+                className="min-h-[44px] touch-manipulation rounded-xl border border-[rgba(201,146,42,0.25)] bg-transparent px-4 py-2.5 text-[13px] font-medium text-[#8a8fa8] transition-colors hover:border-red-500/35 hover:text-red-300 active:border-red-500/45 active:text-red-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c9922a]"
                 onClick={removeCustomFromTeam}
               >
                 Remove from team
